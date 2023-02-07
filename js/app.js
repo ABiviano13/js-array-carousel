@@ -1,5 +1,5 @@
 //Milestrone 3
-const arrayImageSlide = [
+let arrayImageSlide = [
     './img/image1.jpg',
     './img/image4.jpg',
     './img/image5.jpg',
@@ -10,6 +10,9 @@ const arrayImageSlide = [
 ]
 
 let indexSlideActive = 0;
+
+let carouselElement = document.querySelector('.carousel');
+console.log(carouselElement);
 
 for(let i = 0; i < arrayImageSlide.length; i++) {
 
@@ -29,18 +32,19 @@ for(let i = 0; i < arrayImageSlide.length; i++) {
         imageElement.classList.add('slide-carousel');
     }
     // 5. Salvare la classe del contenitore dove vogliamo aggiungere gli elementi
-    let carouselElement = document.querySelector('.carousel');
-    // console.log(carouselElement);
+    // let carouselElement = document.querySelector('.carousel');
+    // // console.log(carouselElement);
     // 6. Aggiungere gli elementi
     carouselElement.append(imageElement);
 }
+
 // Milestrone 2
 
 // 1. Creare una variabile dell'indice della slide attiva (0)
-
+// let indexSlideActive = 0;
 // 2. Creare una variabile che si collega al DOM e prende tutte le slide
-// const slideElements = document.getElementsByClassName('slide-carousel');
-// console.log(slideElements);
+const slideElements = document.getElementsByClassName('slide-carousel');
+console.log(slideElements);
 
 let slideNext = '';
 
@@ -54,40 +58,49 @@ rightBtnElement.addEventListener('click', function (){
 
     if(indexSlideActive < arrayImageSlide.length - 1){
     // 1. Creare variabile per prendere l'indice della slide attiva non ancora incrementata
-    let slideCurrent = arrayImageSlide[indexSlideActive]; //in questo modo prendiamo l'indice della slide corrente
-    console.log(slideCurrent);
+    // let slideCurrent = arrayImageSlide[indexSlideActive]; //in questo modo prendiamo l'indice della slide corrente
+    // console.log(slideCurrent);
     // 2. Togliere la classe active
-    slideCurrent.classList.remove('active');
+    console.log(arrayImageSlide[indexSlideActive]);
+    slideElements[indexSlideActive].classList.remove('active');
     // 3. Aggiungere l'incremento dell'indice
+    // indexSlideActive += 1;
+    // console.log(indexSlideActive);
+    // 4. Creare variabile per prendere l'indice della slide attiva che abbiamo appena incrementato quindi sarà la successiva
+    // let slideNext = arrayImageSlide[indexSlideActive];
+    // console.log(slideNext);
+    // 5. Aggiungere la classe active
+    console.log(arrayImageSlide[indexSlideActive + 1]);
+    slideElements[indexSlideActive + 1].classList.add('active');
+
     indexSlideActive += 1;
     console.log(indexSlideActive);
-    // 4. Creare variabile per prendere l'indice della slide attiva che abbiamo appena incrementato quindi sarà la successiva
-    let slideNext = arrayImageSlide[indexSlideActive];
-    console.log(slideNext);
-    // 5. Aggiungere la classe active
-    slideNext.classList.add('active');
-    }
+    };
 
 });
 
 
 leftBtnElement.addEventListener('click', function (){
 
-    if(indexSlideActive < arrayImageSlide.length - 1){
-        arrayImageSlide.reverse()
+    if(indexSlideActive > 0){
+    // arrayImageSlide.reverse()
     // 1. Creare variabile per prendere l'indice della slide attiva non ancora incrementata
-    let slideCurrent = arrayImageSlide[indexSlideActive]; //in questo modo prendiamo l'indice della slide corrente
-    console.log(slideCurrent);
+    // let slideCurrent = arrayImageSlide[indexSlideActive]; //in questo modo prendiamo l'indice della slide corrente
+    // console.log(slideCurrent);
     // 2. Togliere la classe active
-    slideCurrent.classList.remove('active');
+    console.log(arrayImageSlide[indexSlideActive]);
+    slideElements[indexSlideActive].classList.remove('active');
     // 3. Decremento dell'indice
-    indexSlideActive += 1;
+    // indexSlideActive -= 1;
     // 4. Creare variabile per prendere l'indice della slide attiva che abbiamo appena incrementato quindi sarà la successiva
-    let slideNext = arrayImageSlide[indexSlideActive];
-    console.log(slideNext);
+    // let slideNext = arrayImageSlide[indexSlideActive];
+    // console.log(slideNext);
     // 5. Aggiungere la classe active
-    slideNext.classList.add('active');
-    }
+    console.log(arrayImageSlide[indexSlideActive - 1]);
+    slideElements[indexSlideActive - 1].classList.add('active');
+
+    indexSlideActive -= 1;
+    };
 
 });
 
