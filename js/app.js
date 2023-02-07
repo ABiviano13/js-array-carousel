@@ -1,4 +1,6 @@
 //Milestrone 3
+
+//1. Creare l'array delle immagini che vogliamo inserire nel Dom 
 let arrayImageSlide = [
     './img/image1.jpg',
     './img/image4.jpg',
@@ -9,97 +11,74 @@ let arrayImageSlide = [
     './img/image10.jpg'
 ]
 
+// 2. Creare una variabile dell'indice della slide attiva (0)
 let indexSlideActive = 0;
 
+// 3. Creare una variabile che racchiude il nostro carosello
 let carouselElement = document.querySelector('.carousel');
 console.log(carouselElement);
 
+// 4. Creare un ciclo for per creare tutti gli elementi presenti nell'array
 for(let i = 0; i < arrayImageSlide.length; i++) {
-
     // 1. Salvare in una variabile l'indice dell'array
     const indexSlide = arrayImageSlide[i];
-
     // 2. Creare elementi html di tipo img
     const imageElement = document.createElement('img');
     console.log(imageElement);
     // 3. Aggiungere src
     imageElement.src=[indexSlide];
     console.log(imageElement);
-    // 4. Creare un if 
+    // 4. Creare un if per assegnare all'indexSlideActive sia la classe 'slide-carousel' sia la classe 'active' e a tutti gli altri elementi solo la prima classe
     if( i === indexSlideActive){
         imageElement.classList.add('slide-carousel', 'active');
     } else {
         imageElement.classList.add('slide-carousel');
     }
-    // 5. Salvare la classe del contenitore dove vogliamo aggiungere gli elementi
-    // let carouselElement = document.querySelector('.carousel');
-    // // console.log(carouselElement);
-    // 6. Aggiungere gli elementi
+    // 5. Aggiungere gli elementi
     carouselElement.append(imageElement);
 }
 
 // Milestrone 2
 
-// 1. Creare una variabile dell'indice della slide attiva (0)
-// let indexSlideActive = 0;
-// 2. Creare una variabile che si collega al DOM e prende tutte le slide
+// 1. Creare una variabile che si collega al DOM e prende tutte le slide
 const slideElements = document.getElementsByClassName('slide-carousel');
 console.log(slideElements);
 
-let slideNext = '';
-
-// 3. Creare due variabili che si collega al DOM e prende le frecce
+// 2. Creare due variabili che si collega al DOM e prende le frecce
 const rightBtnElement = document.querySelector('.arrow-right');
 const leftBtnElement = document.querySelector('.arrow-left');
 console.log(rightBtnElement, leftBtnElement);
 
-// 4. Creare una funzione per la quale quando si effettua un click nella freccia a destra si scorre fino all'ultima immagine
+// 3. Creare una funzione per la quale quando si effettua un click nella freccia a destra si scorre fino all'ultima immagine
 rightBtnElement.addEventListener('click', function (){
 
     if(indexSlideActive < arrayImageSlide.length - 1){
-    // 1. Creare variabile per prendere l'indice della slide attiva non ancora incrementata
-    // let slideCurrent = arrayImageSlide[indexSlideActive]; //in questo modo prendiamo l'indice della slide corrente
-    // console.log(slideCurrent);
-    // 2. Togliere la classe active
-    console.log(arrayImageSlide[indexSlideActive]);
+    // 1. Togliere la classe active dalla slide corrente
     slideElements[indexSlideActive].classList.remove('active');
-    // 3. Aggiungere l'incremento dell'indice
-    // indexSlideActive += 1;
-    // console.log(indexSlideActive);
-    // 4. Creare variabile per prendere l'indice della slide attiva che abbiamo appena incrementato quindi sarà la successiva
-    // let slideNext = arrayImageSlide[indexSlideActive];
-    // console.log(slideNext);
-    // 5. Aggiungere la classe active
-    console.log(arrayImageSlide[indexSlideActive + 1]);
+    console.log(arrayImageSlide[indexSlideActive]);
+    // 2. Aggiungere la classe active alla slide successiva
     slideElements[indexSlideActive + 1].classList.add('active');
-
+    console.log(arrayImageSlide[indexSlideActive + 1]);
+    // 3. Incrementare l'indice
     indexSlideActive += 1;
     console.log(indexSlideActive);
     };
 
 });
 
-
+// 4. Creare una funzione per la quale quando si effettua un click nella freccia a sinistra si ritorna indietro fino all'indice 0 
 leftBtnElement.addEventListener('click', function (){
 
     if(indexSlideActive > 0){
-    // arrayImageSlide.reverse()
-    // 1. Creare variabile per prendere l'indice della slide attiva non ancora incrementata
-    // let slideCurrent = arrayImageSlide[indexSlideActive]; //in questo modo prendiamo l'indice della slide corrente
-    // console.log(slideCurrent);
-    // 2. Togliere la classe active
-    console.log(arrayImageSlide[indexSlideActive]);
+    // 1. Togliere la classe active dalla slide corrente
     slideElements[indexSlideActive].classList.remove('active');
-    // 3. Decremento dell'indice
-    // indexSlideActive -= 1;
-    // 4. Creare variabile per prendere l'indice della slide attiva che abbiamo appena incrementato quindi sarà la successiva
-    // let slideNext = arrayImageSlide[indexSlideActive];
-    // console.log(slideNext);
-    // 5. Aggiungere la classe active
-    console.log(arrayImageSlide[indexSlideActive - 1]);
+    console.log(arrayImageSlide[indexSlideActive]);
+    // 2. Aggiungere la classe active alla slide precedente
     slideElements[indexSlideActive - 1].classList.add('active');
-
+    console.log(arrayImageSlide[indexSlideActive - 1]);
+    // 3. Decrementare l'indice
     indexSlideActive -= 1;
+    console.log(indexSlideActive);
     };
 
 });
